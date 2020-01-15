@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:padding="8dp"
     tools:context=".activity.SplashScreen">
 
+
     <LinearLayout
+        android:id="@+id/options_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
@@ -30,8 +33,10 @@
         </TextView>
 
         <RadioGroup
+            android:id="@+id/radio_group_options"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
 
             <RadioButton
                 android:id="@+id/a"
@@ -60,10 +65,29 @@
         </RadioGroup>
 
         <Button
+            android:id="@+id/checkAmswer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next">
+            android:text="Check answer" />
 
-        </Button>
+        <Button
+            android:id="@+id/nextQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next Question" />
+
     </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ExpandableListView
+            android:id="@+id/expandableListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ExpandableListView>
+    </LinearLayout>
+
+</FrameLayout>

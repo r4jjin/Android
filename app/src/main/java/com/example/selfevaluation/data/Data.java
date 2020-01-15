@@ -1,58 +1,37 @@
 package com.example.selfevaluation.data;
 
-import com.example.selfevaluation.model.Chapter;
 import com.example.selfevaluation.model.Module;
-import com.example.selfevaluation.model.Question;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class Data {
 
 
-    public static List<Module> getData() {
-        List<Module> modules = new ArrayList<>();
-        for (int k = 2; k < 5; k++) {
-            Module module = new Module();
-            module.setId("Ikai" + k);
-            module.setChapters(getChapters());
-            modules.add(module);
+    public static LinkedHashMap<String, List<String>> getViewData() {
+
+        LinkedHashMap<String, List<String>> expandableListDetail = new LinkedHashMap<>();
+        Module[] modules = getData();
+        for (int i = 0; i < modules.length; i++) {
+            String title = modules[i].getId();
+            List<String> list = new ArrayList<>();
+            for (int k = 0; k < modules[i].getChapters().size(); k++) {
+                list.add(modules[i].getChapters().get(k).getId());
+            }
+            expandableListDetail.put(title, list);
         }
-        return modules;
+
+        return expandableListDetail;
     }
 
-    private static List<Chapter> getChapters() {
-        List<Chapter> chapters = new ArrayList<>();
-
-        for (int j = 0; j < 2; j++) {
-            Chapter chapter = new Chapter();
-            chapter.setId("Chapter Name" + j);
-            chapter.setQuestions(getQuestions());
-            chapters.add(chapter);
-        }
-        return chapters;
+    public static Module[] getData() {
+        Gson gson = new Gson();
+        return gson.fromJson(JSON_DATA, Module[].class);
     }
 
-
-    private static List<Question> getQuestions() {
-        List<Question> questionList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Question question = new Question();
-            question.setQuestion("Question" + i);
-            question.setAnswer("d");
-            question.setOptions(new ArrayList<String>() {{
-
-                add("aq");
-                add("bq");
-                add("cq");
-                add("dq");
-            }});
-            questionList.add(question);
-        }
-        return questionList;
-    }
-
-    public static final String JSON_DATA="[\n" +
+    private static final String JSON_DATA = "[\n" +
             "  {\n" +
             "    \"chapters\": [\n" +
             "      {\n" +
