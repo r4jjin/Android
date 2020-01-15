@@ -33,16 +33,17 @@ public class QuizScreen extends BaseActivity {
     public static final String TEST_EXIT_MESSAGE = "Are you sure you want to exit test?";
 
     /*UI variables*/
-    private ExpandableListView expandableListView;
-    private LinearLayout optionsLayout;
+    private ExpandableListView exp_list_view_modulesView;
+    private LinearLayout layout_Options;
     private RadioGroup optionsRadioGroup;
     private RadioButton radio_a;
     private RadioButton radio_b;
     private RadioButton radio_c;
     private RadioButton radio_d;
-    private Button checkAnswerButton;
-    private Button nextQuestionButton;
+    private Button btn_checkAnswer;
+    private Button btn_nextQuestion;
     private TextView txt_question;
+    private TextView txt_questionNumber;
 
     /*Intitializer variables*/
     private int activeQuestionIndex = 0;
@@ -64,39 +65,40 @@ public class QuizScreen extends BaseActivity {
         expandableListDetail = getViewData();
         final List<String> expandableListTitle = new ArrayList<>(expandableListDetail.keySet());
         ExpandableListAdapter expandableListAdapter = new CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
-        expandableListView.setAdapter(expandableListAdapter);
+        exp_list_view_modulesView.setAdapter(expandableListAdapter);
 
 
-        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+        exp_list_view_modulesView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 initiateQuestionNavigationFlow();
                 activeGroupPosition = groupPosition;
                 activeChildPosition = childPosition;
-                loadQuestionAnwerUI();
-//                Toast.makeText(getApplicationContext(), expandableListTitle.get(groupPosition) + " -> " + expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();
+                loadQuestionAnswerUI();
                 return false;
             }
         });
 
-        checkAnswerButton.setOnClickListener(new View.OnClickListener() {
+        btn_checkAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 boolean isCorrectAnswer = checkAnswer();
-                Toast.makeText(getApplicationContext(), isCorrectAnswer ? "Correct" : "InCorrect", Toast.LENGTH_SHORT).show();
-
+                btn_checkAnswer.setEnabled(false);
+                btn_nextQuestion.setEnabled(true);
+                Toast.makeText(getApplicationContext(), isCorrectAnswer ? "Correct Answer" : "InCorrect Answer", Toast.LENGTH_SHORT).show();
+                ViewUtils.setEnabled(optionsRadioGroup, false);
             }
         });
 
-        nextQuestionButton.setOnClickListener(new View.OnClickListener() {
+        btn_nextQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadQuestionAnwerUI();
-                selectedOption = "";
                 activeQuestionIndex++;
+                loadQuestionAnswerUI();
+                selectedOption = "";
                 optionsRadioGroup.clearCheck();
-                checkAnswerButton.setEnabled(false);
+                btn_checkAnswer.setEnabled(false);
             }
         });
 
@@ -104,7 +106,7 @@ public class QuizScreen extends BaseActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                checkAnswerButton.setEnabled(true);
+                btn_checkAnswer.setEnabled(true);
                 if (checkedId == radio_a.getId()) {
                     selectedOption = "a";
                 } else if (checkedId == radio_b.getId()) {
@@ -120,29 +122,32 @@ public class QuizScreen extends BaseActivity {
     }
 
     private void displayModuleChaptersListUI() {
-        ViewUtils.makeViewGone(optionsLayout);
-        ViewUtils.makeViewVisible(expandableListView);
+        ViewUtils.makeViewGone(layout_Options);
+        ViewUtils.makeViewVisible(exp_list_view_modulesView);
     }
 
     private void displayQuestionAnswerUI() {
-        ViewUtils.makeViewGone(expandableListView);
-        ViewUtils.makeViewVisible(optionsLayout);
+        ViewUtils.makeViewGone(exp_list_view_modulesView);
+        ViewUtils.makeViewVisible(layout_Options);
     }
 
     private void initializeUI() {
-        expandableListView = findViewById(R.id.expandableListView);
-        optionsLayout = findViewById(R.id.options_list);
-        checkAnswerButton = findViewById(R.id.checkAmswer);
-        nextQuestionButton = findViewById(R.id.nextQuestion);
+        exp_list_view_modulesView = findViewById(R.id.expandableListView);
+        layout_Options = findViewById(R.id.options_list);
+        btn_checkAnswer = findViewById(R.id.checkAmswer);
+        btn_nextQuestion = findViewById(R.id.nextQuestion);
         radio_d = findViewById(R.id.d);
         radio_c = findViewById(R.id.c);
         radio_b = findViewById(R.id.b);
         radio_a = findViewById(R.id.a);
         optionsRadioGroup = findViewById(R.id.radio_group_options);
         txt_question = findViewById(R.id.question);
+        txt_questionNumber = findViewById(R.id.questionNumber);
     }
 
-    private void loadQuestionAnwerUI() {
+    private void loadQuestionAnswerUI() {
+        btn_nextQuestion.setEnabled(false);
+        ViewUtils.setEnabled(optionsRadioGroup, true);
         try {
             Question question = getData()[activeGroupPosition].getChapters().get(activeChildPosition).getQuestions().get(activeQuestionIndex);
             txt_question.setText(question.getQuestion());
@@ -150,6 +155,7 @@ public class QuizScreen extends BaseActivity {
             radio_b.setText(question.getOptions().get(1));
             radio_c.setText(question.getOptions().get(2));
             radio_d.setText(question.getOptions().get(3));
+            txt_questionNumber.setText("Question No. " + (activeQuestionIndex + 1));
         } catch (Exception e) {
             displayModuleChaptersListUI();
             reset();
@@ -168,17 +174,18 @@ public class QuizScreen extends BaseActivity {
         activeGroupPosition = 0;
         activeChildPosition = 0;
         selectedOption = "";
+        optionsRadioGroup.clearCheck();
     }
 
     private void initiateQuestionNavigationFlow() {
         displayQuestionAnswerUI();
-        checkAnswerButton.setEnabled(false);
+        btn_checkAnswer.setEnabled(false);
         activeQuestionIndex = 0;
     }
 
     @Override
     public void onBackPressed() {
-        if (ViewUtils.isViewVisible(expandableListView)) {
+        if (ViewUtils.isViewVisible(exp_list_view_modulesView)) {
             displayDIalog(APP_EXIT_MESSAGE, true);
         } else {
             displayDIalog(TEST_EXIT_MESSAGE, false);

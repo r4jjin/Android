@@ -3,6 +3,7 @@ package com.example.selfevaluation.utils;
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioGroup;
 
 public class ViewUtils {
     Context context;
@@ -31,5 +32,11 @@ public class ViewUtils {
 
     public static boolean isViewVisible(View view) {
         return view.getVisibility() == View.VISIBLE;
+    }
+
+    public static void setEnabled(RadioGroup radioGroup, boolean status) {
+        for (int i = 0; i < radioGroup.getChildCount(); i++) {
+            radioGroup.getChildAt(i).setEnabled(status);
+        }
     }
 }
