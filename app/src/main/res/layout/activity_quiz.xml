@@ -19,7 +19,10 @@
             android:id="@+id/questionNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="@dimen/primary_text_padding"
             android:text="Question"
+            android:textSize="@dimen/app_font"
+            android:textColor="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -29,39 +32,51 @@
             android:id="@+id/question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Who is this person">
+            android:padding="@dimen/primary_text_padding"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="Who is this person"
+            android:textSize="@dimen/app_font">
 
         </TextView>
 
         <RadioGroup
             android:id="@+id/radio_group_options"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="@dimen/primary_text_padding">
 
 
             <RadioButton
                 android:id="@+id/a"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="option1" />
+                android:text="option1"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/app_font" />
 
             <RadioButton
                 android:id="@+id/b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="option2" />
+                android:textColor="@color/colorPrimary"
+                android:text="option2"
+                android:textSize="@dimen/app_font" />
 
             <RadioButton
                 android:id="@+id/c"
+                android:textColor="@color/colorPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="option3" />
+                android:text="option3"
+                android:textSize="@dimen/app_font" />
 
             <RadioButton
                 android:id="@+id/d"
+                android:textColor="@color/colorPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="option4" />
+                android:text="option4"
+                android:textSize="@dimen/app_font" />
 
         </RadioGroup>
 

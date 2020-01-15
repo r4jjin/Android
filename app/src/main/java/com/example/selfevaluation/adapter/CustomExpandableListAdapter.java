@@ -1,4 +1,4 @@
-package com.example.selfevaluation.views;
+package com.example.selfevaluation.adapter;
 
 
 import android.content.Context;
@@ -87,6 +87,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.listTitle);
         listTitleTextView.setTypeface(null, Typeface.BOLD);
         listTitleTextView.setText(listTitle);
+
         return convertView;
     }
 

@@ -17,7 +17,7 @@ import androidx.appcompat.app.AlertDialog;
 import com.example.selfevaluation.R;
 import com.example.selfevaluation.model.Question;
 import com.example.selfevaluation.utils.ViewUtils;
-import com.example.selfevaluation.views.CustomExpandableListAdapter;
+import com.example.selfevaluation.adapter.CustomExpandableListAdapter;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -68,6 +68,9 @@ public class QuizScreen extends BaseActivity {
         exp_list_view_modulesView.setAdapter(expandableListAdapter);
 
 
+        exp_list_view_modulesView.expandGroup(0,true);
+        exp_list_view_modulesView.expandGroup(1,true);
+        exp_list_view_modulesView.expandGroup(2,true);
         exp_list_view_modulesView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {

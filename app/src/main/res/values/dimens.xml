@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="app_font">18sp</dimen>
+    <dimen name="primary_text_padding">10dp</dimen>
+</resources>
