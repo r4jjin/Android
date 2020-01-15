@@ -1,10 +1,10 @@
-package com.example.selfevaluation;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.selfevaluation.activity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.selfevaluation.R;
+
+public class SplashScreen extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
