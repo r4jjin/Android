@@ -10,14 +10,14 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
 import com.example.selfevaluation.R;
+import com.example.selfevaluation.adapter.CustomExpandableListAdapter;
 import com.example.selfevaluation.model.Question;
 import com.example.selfevaluation.utils.ViewUtils;
-import com.example.selfevaluation.adapter.CustomExpandableListAdapter;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -25,6 +25,8 @@ import java.util.List;
 
 import static com.example.selfevaluation.data.Data.getData;
 import static com.example.selfevaluation.data.Data.getViewData;
+import static com.example.selfevaluation.utils.ViewUtils.getCorrect;
+import static com.example.selfevaluation.utils.ViewUtils.getInCorrect;
 
 public class QuizScreen extends BaseActivity {
     /*Constants*/
@@ -44,8 +46,10 @@ public class QuizScreen extends BaseActivity {
     private Button btn_nextQuestion;
     private TextView txt_question;
     private TextView txt_questionNumber;
+    private TextView txt_scoreCard;
 
     /*Intitializer variables*/
+    private int correctAnswers = 0;
     private int activeQuestionIndex = 0;
     private int activeGroupPosition = 0;
     private int activeChildPosition = 0;
@@ -60,7 +64,7 @@ public class QuizScreen extends BaseActivity {
         initializeUI();
         displayModuleChaptersListUI();
 
-
+//Snack
         final LinkedHashMap<String, List<String>> expandableListDetail;
         expandableListDetail = getViewData();
         final List<String> expandableListTitle = new ArrayList<>(expandableListDetail.keySet());
@@ -68,9 +72,9 @@ public class QuizScreen extends BaseActivity {
         exp_list_view_modulesView.setAdapter(expandableListAdapter);
 
 
-        exp_list_view_modulesView.expandGroup(0,true);
-        exp_list_view_modulesView.expandGroup(1,true);
-        exp_list_view_modulesView.expandGroup(2,true);
+        exp_list_view_modulesView.expandGroup(0, true);
+        exp_list_view_modulesView.expandGroup(1, true);
+        exp_list_view_modulesView.expandGroup(2, true);
         exp_list_view_modulesView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
@@ -89,7 +93,11 @@ public class QuizScreen extends BaseActivity {
                 boolean isCorrectAnswer = checkAnswer();
                 btn_checkAnswer.setEnabled(false);
                 btn_nextQuestion.setEnabled(true);
-                Toast.makeText(getApplicationContext(), isCorrectAnswer ? "Correct Answer" : "InCorrect Answer", Toast.LENGTH_SHORT).show();
+                txt_scoreCard.setText("Score Card : " + correctAnswers + " / 10");
+                Snackbar snackbar = Snackbar.make(layout_Options, isCorrectAnswer ? "Correct Answer" : "Incorrect Answer", Snackbar.LENGTH_LONG);
+                View sbView = snackbar.getView();
+                sbView.setBackgroundColor(isCorrectAnswer ? getCorrect() : getInCorrect());
+                snackbar.show();
                 ViewUtils.setEnabled(optionsRadioGroup, false);
             }
         });
@@ -146,6 +154,7 @@ public class QuizScreen extends BaseActivity {
         optionsRadioGroup = findViewById(R.id.radio_group_options);
         txt_question = findViewById(R.id.question);
         txt_questionNumber = findViewById(R.id.questionNumber);
+        txt_scoreCard = findViewById(R.id.score_card);
     }
 
     private void loadQuestionAnswerUI() {
@@ -169,15 +178,19 @@ public class QuizScreen extends BaseActivity {
 
     private boolean checkAnswer() {
         String answer = getData()[activeGroupPosition].getChapters().get(activeChildPosition).getQuestions().get(activeQuestionIndex).getAnswer();
-        return answer.equalsIgnoreCase(selectedOption);
+        boolean isCorrect = answer.equalsIgnoreCase(selectedOption);
+        correctAnswers = isCorrect ? (correctAnswers + 1) : correctAnswers;
+        return isCorrect;
     }
 
     private void reset() {
+        activeQuestionIndex = 0;
         activeQuestionIndex = 0;
         activeGroupPosition = 0;
         activeChildPosition = 0;
         selectedOption = "";
         optionsRadioGroup.clearCheck();
+        txt_scoreCard.setText("");
     }
 
     private void initiateQuestionNavigationFlow() {

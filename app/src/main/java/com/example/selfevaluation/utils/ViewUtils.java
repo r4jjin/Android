@@ -2,12 +2,17 @@ package com.example.selfevaluation.utils;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RadioGroup;
+
+import androidx.core.content.ContextCompat;
+
+import com.example.selfevaluation.R;
+import com.example.selfevaluation.application.MyApplication;
 
 public class ViewUtils {
     Context context;
     private ViewUtils viewUtils;
+
 
     ViewUtils getInstance() {
         if (viewUtils != null) {
@@ -38,5 +43,13 @@ public class ViewUtils {
         for (int i = 0; i < radioGroup.getChildCount(); i++) {
             radioGroup.getChildAt(i).setEnabled(status);
         }
+    }
+
+    public static int getCorrect() {
+        return ContextCompat.getColor(MyApplication.getAppContext(), R.color.colorPrimary);
+    }
+
+    public static int getInCorrect() {
+        return ContextCompat.getColor(MyApplication.getAppContext(), R.color.colorAccent);
     }
 }

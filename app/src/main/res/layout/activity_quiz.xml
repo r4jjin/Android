@@ -21,8 +21,8 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/primary_text_padding"
             android:text="Question"
-            android:textSize="@dimen/app_font"
             android:textColor="@color/colorAccent"
+            android:textSize="@dimen/app_font"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -33,8 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/primary_text_padding"
-            android:textColor="@color/colorPrimaryDark"
             android:text="Who is this person"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/app_font">
 
         </TextView>
@@ -58,40 +58,57 @@
                 android:id="@+id/b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"
                 android:text="option2"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/app_font" />
 
             <RadioButton
                 android:id="@+id/c"
-                android:textColor="@color/colorPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="option3"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/app_font" />
 
             <RadioButton
                 android:id="@+id/d"
-                android:textColor="@color/colorPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="option4"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/app_font" />
 
         </RadioGroup>
 
-        <Button
-            android:id="@+id/checkAmswer"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Check answer" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/nextQuestion"
+            <Button
+                android:id="@+id/checkAmswer"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/primary_text_padding"
+                android:text="Check" />
+
+            <Button
+                android:id="@+id/nextQuestion"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/primary_text_padding"
+                android:text="Next" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/score_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next Question" />
-
+            android:padding="@dimen/primary_text_padding"
+            android:text=""
+            android:textColor="@color/colorAccent" />
     </LinearLayout>
 
     <LinearLayout
