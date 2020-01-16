@@ -1,6 +1,5 @@
 package com.example.selfevaluation.utils;
 
-import android.content.Context;
 import android.view.View;
 import android.widget.RadioGroup;
 
@@ -10,25 +9,10 @@ import com.example.selfevaluation.R;
 import com.example.selfevaluation.application.MyApplication;
 
 public class ViewUtils {
-    Context context;
-    private ViewUtils viewUtils;
 
-
-    ViewUtils getInstance() {
-        if (viewUtils != null) {
-            return viewUtils;
-        } else {
-            viewUtils = new ViewUtils();
-        }
-        return viewUtils;
-    }
 
     public static void makeViewGone(View view) {
         view.setVisibility(View.GONE);
-    }
-
-    public static void makeViewInvisible(View view) {
-        view.setVisibility(View.INVISIBLE);
     }
 
     public static void makeViewVisible(View view) {

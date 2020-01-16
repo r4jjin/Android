@@ -86,7 +86,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/checkAmswer"
+                android:id="@+id/checkAnswer"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

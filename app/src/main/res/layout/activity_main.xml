@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pv="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/colorPrimary"
     android:layout_height="match_parent"
-    xmlns:pv="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
     tools:context=".activity.SplashScreen">
 
     <me.wangyuwei.particleview.ParticleView
         android:id="@+id/particle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         pv:pv_background_color="@color/colorPrimaryDark"
         pv:pv_host_text="Self"
         pv:pv_host_text_anim_time="1000"
         pv:pv_host_text_size="@dimen/app_font"
-        pv:pv_particle_text="Evauation"
+        pv:pv_particle_text="Evaluation"
         pv:pv_particle_text_size="@dimen/app_font"
         pv:pv_spread_anim_time="500"
         pv:pv_text_anim_time="1000"
-        pv:pv_text_color="#FFF"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        pv:pv_text_color="#FFF" />
 
 </LinearLayout>

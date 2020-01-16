@@ -14,11 +14,11 @@ public class Data {
 
         LinkedHashMap<String, List<String>> expandableListDetail = new LinkedHashMap<>();
         Module[] modules = getData();
-        for (int i = 0; i < modules.length; i++) {
-            String title = modules[i].getId();
+        for (Module module : modules) {
+            String title = module.getId();
             List<String> list = new ArrayList<>();
-            for (int k = 0; k < modules[i].getChapters().size(); k++) {
-                list.add(modules[i].getChapters().get(k).getId());
+            for (int k = 0; k < module.getChapters().size(); k++) {
+                list.add(module.getChapters().get(k).getId());
             }
             expandableListDetail.put(title, list);
         }

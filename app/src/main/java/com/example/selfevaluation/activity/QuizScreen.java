@@ -30,9 +30,10 @@ import static com.example.selfevaluation.utils.ViewUtils.getInCorrect;
 
 public class QuizScreen extends BaseActivity {
     /*Constants*/
+    @SuppressWarnings("unused")
     public static final String LOG = "QuizScreen";
-    public static final String APP_EXIT_MESSAGE = "Are you sure you want to exit?";
-    public static final String TEST_EXIT_MESSAGE = "Are you sure you want to exit test?";
+    private static final String APP_EXIT_MESSAGE = "Are you sure you want to exit?";
+    private static final String TEST_EXIT_MESSAGE = "Are you sure you want to exit test?";
 
     /*UI variables*/
     private ExpandableListView exp_list_view_modulesView;
@@ -145,7 +146,7 @@ public class QuizScreen extends BaseActivity {
     private void initializeUI() {
         exp_list_view_modulesView = findViewById(R.id.expandableListView);
         layout_Options = findViewById(R.id.options_list);
-        btn_checkAnswer = findViewById(R.id.checkAmswer);
+        btn_checkAnswer = findViewById(R.id.checkAnswer);
         btn_nextQuestion = findViewById(R.id.nextQuestion);
         radio_d = findViewById(R.id.d);
         radio_c = findViewById(R.id.c);
@@ -185,7 +186,7 @@ public class QuizScreen extends BaseActivity {
 
     private void reset() {
         activeQuestionIndex = 0;
-        activeQuestionIndex = 0;
+        correctAnswers = 0;
         activeGroupPosition = 0;
         activeChildPosition = 0;
         selectedOption = "";
@@ -202,13 +203,13 @@ public class QuizScreen extends BaseActivity {
     @Override
     public void onBackPressed() {
         if (ViewUtils.isViewVisible(exp_list_view_modulesView)) {
-            displayDIalog(APP_EXIT_MESSAGE, true);
+            displayDialog(APP_EXIT_MESSAGE, true);
         } else {
-            displayDIalog(TEST_EXIT_MESSAGE, false);
+            displayDialog(TEST_EXIT_MESSAGE, false);
         }
     }
 
-    void displayDIalog(String message, final boolean appExitStatus) {
+    private void displayDialog(String message, final boolean appExitStatus) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message)
                 .setCancelable(false)

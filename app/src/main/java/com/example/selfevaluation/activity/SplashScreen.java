@@ -9,13 +9,11 @@ import me.wangyuwei.particleview.ParticleView;
 
 public class SplashScreen extends BaseActivity {
 
-    ParticleView mParticleView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mParticleView = findViewById(R.id.particle);
+        ParticleView mParticleView = findViewById(R.id.particle);
         mParticleView.startAnim();
         mParticleView.setOnParticleAnimListener(new ParticleView.ParticleAnimListener() {
             @Override
