@@ -1,5 +1,6 @@
 package com.example.selfevaluation.activity;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
@@ -88,6 +89,7 @@ public class QuizScreen extends BaseActivity {
         });
 
         btn_checkAnswer.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
 
@@ -95,7 +97,7 @@ public class QuizScreen extends BaseActivity {
                 btn_checkAnswer.setEnabled(false);
                 btn_nextQuestion.setEnabled(true);
                 txt_scoreCard.setText("Score Card : " + correctAnswers + " / 10");
-                Snackbar snackbar = Snackbar.make(layout_Options, isCorrectAnswer ? "Correct Answer" : "Incorrect Answer", Snackbar.LENGTH_LONG);
+                Snackbar snackbar = Snackbar.make(layout_Options, isCorrectAnswer ? "Correct Answer" : "Answer is " + getAnswer(), Snackbar.LENGTH_LONG);
                 View sbView = snackbar.getView();
                 sbView.setBackgroundColor(isCorrectAnswer ? getCorrect() : getInCorrect());
                 snackbar.show();
@@ -158,6 +160,7 @@ public class QuizScreen extends BaseActivity {
         txt_scoreCard = findViewById(R.id.score_card);
     }
 
+    @SuppressLint("SetTextI18n")
     private void loadQuestionAnswerUI() {
         btn_nextQuestion.setEnabled(false);
         ViewUtils.setEnabled(optionsRadioGroup, true);
@@ -182,6 +185,19 @@ public class QuizScreen extends BaseActivity {
         boolean isCorrect = answer.equalsIgnoreCase(selectedOption);
         correctAnswers = isCorrect ? (correctAnswers + 1) : correctAnswers;
         return isCorrect;
+    }
+
+    private String getAnswer() {
+        Question x = getData()[activeGroupPosition].getChapters().get(activeChildPosition).getQuestions().get(activeQuestionIndex);
+        String answer = x.getAnswer();
+        int index = 0;
+        //noinspection StatementWithEmptyBody
+        if (answer.equalsIgnoreCase("a")) {
+        }
+        else if (answer.equalsIgnoreCase("b")) index = 1;
+        else if (answer.equalsIgnoreCase("c")) index = 2;
+        else if (answer.equalsIgnoreCase("d")) index = 3;
+        return x.getOptions().get(index);
     }
 
     private void reset() {

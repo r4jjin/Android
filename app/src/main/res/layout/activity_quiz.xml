@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/primary_text_padding"
-            android:text="Question"
+            android:text=""
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/app_font"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/primary_text_padding"
-            android:text="Who is this person"
+            android:text=""
             android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/app_font">
 
@@ -50,7 +50,7 @@
                 android:id="@+id/a"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="option1"
+                android:text=""
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/app_font" />
 
@@ -58,7 +58,7 @@
                 android:id="@+id/b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="option2"
+                android:text=""
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/app_font" />
 
@@ -66,7 +66,7 @@
                 android:id="@+id/c"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="option3"
+                android:text=""
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/app_font" />
 
@@ -74,7 +74,7 @@
                 android:id="@+id/d"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="option4"
+                android:text=""
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/app_font" />
 
@@ -91,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/primary_text_padding"
-                android:text="Check" />
+                android:text="@string/check" />
 
             <Button
                 android:id="@+id/nextQuestion"
@@ -99,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/primary_text_padding"
-                android:text="Next" />
+                android:text="@string/next" />
         </LinearLayout>
 
         <TextView

@@ -1,6 +1,7 @@
 package com.example.selfevaluation.adapter;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -39,6 +40,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         return expandedListPosition;
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View getChildView(int listPosition, final int expandedListPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
@@ -75,6 +77,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         return listPosition;
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View getGroupView(int listPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
