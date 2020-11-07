@@ -75,8 +75,8 @@ public class QuizScreen extends BaseActivity {
 
 
         exp_list_view_modulesView.expandGroup(0, true);
-        exp_list_view_modulesView.expandGroup(1, true);
-        exp_list_view_modulesView.expandGroup(2, true);
+//        exp_list_view_modulesView.expandGroup(1, true);
+//        exp_list_view_modulesView.expandGroup(2, true);
         exp_list_view_modulesView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
